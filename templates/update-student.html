@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h3>Update Student</h3>
+    <form action="{{url_for("update_student", id=student.id)}}" method="post">
+        <input type="text" placeholder='First Name' value={{student.first_name}} name="first_name" id=""><br><br>
+        <input type="text" placeholder='Last Name' value={{student.last_name}} name="last_name" id=""><br><br>
+        <input type="text" placeholder='Email' value={{student.email}} name="email" id=""><br><br>
+    <input type="submit" value="update Student">
+    </form>
+    
+</body>
+</html>

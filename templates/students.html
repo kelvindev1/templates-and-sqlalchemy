@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th colspan='2'>Actions</th>
+    </tr>
+    {% for  student in students  %}
+    <tr>
+    <td>{{student.id}}</td>
+    <td>{{student.first_name}}</td>
+    <td>{{student.last_name}}</td>
+    <td>{{student.email}}</td>
+    <td><a href="{{url_for('update_student', id=student.id)}}"><button>Update</button> </a></td>
+    <td><a href="{{url_for('delete_student', id=student.id)}}"><button>Delete </button> </a></td>
+    
+    </tr>
+    {% endfor %}
+    
+    </table>
+        
+</body>
+</html>
