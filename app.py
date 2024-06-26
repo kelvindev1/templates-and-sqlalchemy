@@ -1,10 +1,12 @@
 from flask import  Flask, render_template, url_for, request, redirect
 from flask_migrate import Migrate
+from api import student_bp 
 
 from models import db, Student
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///school.db'
+app.register_blueprint(student_bp)
 db.init_app(app)
 migrate = Migrate(app=app, db=db)
 
@@ -14,7 +16,8 @@ migrate = Migrate(app=app, db=db)
 @app.route('/student/<int:id>/')
 def single_student(id):
     student = Student.query.filter_by(id=id).first()
-    
+    print(student.payments)
+    print(student.bio_data)
     return render_template('index.html', student= student)
 
 

@@ -15,6 +15,19 @@
 {{student.first_name}} <br>
 {{student.last_name}} <br>
 {{student.email}} <br>
+<table>
+<tr>
+    <th>description</th>
+    <th>Amount</th>
+</tr>
+    {% for payment in  student.payments %}
+<tr>
+    <td>{{payment.description}}</td>
+    <td>{{payment.amount}}</td>
+</tr>
 
+{% endfor %}
+
+</table>
 </body>
 </html>
