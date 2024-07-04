@@ -1,11 +1,15 @@
 from flask import Blueprint, request, jsonify
 from models import db, Payment, BioData, Student
+from flask_jwt_extended import jwt_required, current_user
+from auth import allow
+
 
 
 student_bp = Blueprint('student_bp',__name__, url_prefix='/student')
 
-
 @student_bp.route('/all')
+@jwt_required()
+@allow('admin')
 def payments():
     payments= Payment.query.all()
     payments_json= [payment.to_dict() for payment in payments]
@@ -13,6 +17,8 @@ def payments():
 
 
 @student_bp.route('/new', methods=['POST', 'GET'])
+@jwt_required()
+@allow('admin')
 def new_payment():
 
     if request.method== 'POST':
@@ -25,6 +31,8 @@ def new_payment():
     
 
 @student_bp.route('/biodata/<int:id>')
+@jwt_required()
+@allow('admin')
 def get_bio_data(id):
     bio_data= BioData.query.filter_by(id=id).first()
     
@@ -33,6 +41,8 @@ def get_bio_data(id):
 
 
 @student_bp.route('/newbiodata/<int:id>', methods=['POST', 'GET'])
+@jwt_required()
+@allow('admin')
 def new_bio_data(id):
     student = Student.query.filter_by(id=id).first()
     if request.method== 'POST':
